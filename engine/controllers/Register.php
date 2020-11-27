@@ -6,6 +6,7 @@ class Register extends Controller
   public function __construct($controller,$method)
   {
     parent::__construct($controller,$method);
+    $this->load_model('Users');
     $this->_view->set_layout('default');
   }
 

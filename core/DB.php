@@ -39,7 +39,6 @@ class DB
 
   public function query($q_string, $params = [])
   {
-
     if($this->_query = $this->_mysql->prepare($q_string))
     {
       // binding the params
@@ -198,14 +197,18 @@ class DB
     // call the sql function 
     if($this->query($sql, $bind))
     {
-      if(!count($this->_result))
+      if(isset($this->_result))
       {
-        return false;
+        if(!count($this->_result))
+        {
+          return false;
+        }
+        else
+        {
+          return true;
+        }
       }
-      else
-      {
-        return true;
-      }
+      return false;
     }
   }
 
@@ -221,5 +224,8 @@ class DB
     }
   }
 
-  
+  public function get_columns($table)
+  {
+    return $this->query("SHOW COLUMNS FROM {$table} ");
+  }
 }

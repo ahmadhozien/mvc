@@ -19,6 +19,7 @@ class Model
 	{
 		$columns = $this->get_columns();
 		foreach ($columns as $column) {
+			$columnName = $column->Field;
 			$this->_columns_names[] = $column->Field;
 			$this->{$columnName} = null;
 		}
@@ -33,13 +34,10 @@ class Model
 	public function find($params =[])
 	{
 		$results = [];
-		$results_from_db = $ths->_db->find($this->_table, $params);
-		foreach ($results_from_db as $result) {
-			$modelNameObject = new $this->_modelName($this->_table);
-			foreach ($result as $key => $value) {
-				$modelNameObject->$key = $value;
-			}
-			$results[] = $modelNameObject;
+		$results_from_db = $this->_db->find($this->_table, $params);
+		foreach ($results_from_db as $db_result) {
+			echo $db_result;
+			
 		}
 		return $results;
 	}
