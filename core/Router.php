@@ -32,4 +32,22 @@
         die('method '.$method.' is not exists in controller '.$controller);
       }
     }
+
+    // routing function 
+    public static function redirect($location)
+    {
+      $location = ROOT.'/'.$location;
+      if(!headers_sent())
+      {
+        header("Location : ".$location." ");
+        exit();
+      }
+      else
+      {
+        $redirection = '<script>';
+        $redirection.= 'location.assign('.$location.')';
+        $redirection.= '</script>';
+        echo $redirection;
+      }
+    }
   }

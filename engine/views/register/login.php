@@ -26,11 +26,11 @@
 		<form action="" method="post">
 			<div class="form-group">
 				<label for="mail">E-mail</label>
-				<input type="text" placeholder="example@expmle.com" class="col-12 form-cotrol" name="email" id="mail">
+				<input type="text" placeholder="example@expmle.com" class="col-12 form-cotrol pt-2 pb-2" name="email" id="mail">
 			</div>
 			<div class="form-group">
 				<label for="password">Password</label>
-				<input type="password" placeholder="your password" class="col-12 form-cotrol" name="password" id="password">
+				<input type="password" placeholder="your password" class="col-12 form-cotrol pt-2 pb-2" name="password" id="password">
 			</div>
 			<div class="form-group">
 				<input type="checkbox" class="form-cotrol" name="remember" id="remember">

@@ -11,14 +11,15 @@ class Users extends Model
 	public function __construct($user = '')
 	{
 		$table = 'users';
+		$user_from_db = null;
 		parent::__construct($table);
 		$this->_session_name = USER_SESSION;
 		$this->_coockie_name = COOKIE_NAME;
 		// this option doesn't delete the field from db but just hide it.
 		$this->soft_delete = true;
-		if(isset($user) && $user != '')
+		if(is_int($user) && $user != '')
 		{
-			$user_from_db = $this->find(['conditions' => 'id = ?', 'bind' => [1]]);
+			$user_from_db = $this->find(['conditions' => 'id = ?', 'bind' => [$user]]);
 		}
 		if($user_from_db)
 		{
@@ -31,7 +32,7 @@ class Users extends Model
 	public function find_user_by($type,$value)
 	{
 		$type = str_replace(' ', '', $type);
-		return $this->find(['conditions' => '{$type} = ?', 'bind' => $value]);
+		return $this->find(['conditions' => $type.' = ?', 'bind' => [$value]]);
 	}
 
 	public function login($rememberMe = false)

@@ -36,7 +36,7 @@ class Model
 		$results = [];
 		$results_from_db = $this->_db->find($this->_table, $params);
 		foreach ($results_from_db as $db_result) {
-			echo $db_result;
+			$results[] = $db_result;
 			
 		}
 		return $results;
