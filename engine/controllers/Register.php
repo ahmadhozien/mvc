@@ -23,7 +23,12 @@ class Register extends Controller
       if($validation === true)
       {
         $user = $this->UsersModel->find_user_by('mail',$_POST['email']);
-        print_r($user);
+        if($user && verify_password(Input::get('password'), $user->password))
+        {
+          $remember = isset(Input::get('remember')) ? true : false;
+          $user->login($remember);
+          Router::redirect('');
+        }
       }
     }
   	$this->_view->_show_view('register/login');
