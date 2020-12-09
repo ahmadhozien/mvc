@@ -35,11 +35,14 @@ class Model
 	{
 		$results = [];
 		$results_from_db = $this->_db->find($this->_table, $params);
-		foreach ($results_from_db as $db_result) {
-			$results[] = $db_result;
-			
+		if($results_from_db)
+		{
+			foreach ($results_from_db as $key => $db_result) {
+				$results[$key] = $db_result;
+				
+			}
+			return $results;
 		}
-		return $results;
 	}
 
 	// detect type of action whether insert or update and call it

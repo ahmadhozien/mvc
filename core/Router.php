@@ -39,7 +39,7 @@
       $location = ROOT.'/'.$location;
       if(!headers_sent())
       {
-        header("Location : ".$location." ");
+        header("location : ".$location." ");
         exit();
       }
       else

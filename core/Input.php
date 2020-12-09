@@ -8,7 +8,7 @@ class Input
 	
 	public static function filter($txt)
 	{
-		htmlentities($txt, ENT_QUOTES, "UTF-8")
+		htmlentities($txt, ENT_QUOTES, "UTF-8");
 	}
 
 	public static function get($input)

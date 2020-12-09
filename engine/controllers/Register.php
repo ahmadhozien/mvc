@@ -17,15 +17,21 @@ class Register extends Controller
 
   public function loginMethod()
   {
+    $validation = new Validation();
     if($_POST)
     {
-      $validation = true;
-      if($validation === true)
+      $validation->check(
+        [
+          'email' => ['type' => 'email', 'required' => true, 'min' => 10, 'max' => 255],
+          'password' => ['type' => 'string', 'required' => true, 'min' => 8, 'max' => 255]
+        ]
+      );
+      if($validation->valid() == true)
       {
         $user = $this->UsersModel->find_user_by('mail',$_POST['email']);
-        if($user && verify_password(Input::get('password'), $user->password))
+        if($user && password_verify(Input::get('password'), $user['password']))
         {
-          $remember = isset(Input::get('remember')) ? true : false;
+          $remember =  null !== Input::get('remember') && Input::get('remember') ? true : false;
           $user->login($remember);
           Router::redirect('');
         }

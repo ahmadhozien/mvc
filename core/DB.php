@@ -59,7 +59,7 @@ class DB
         $results = $this->_query->get_result();
         if($results)
         {
-          $this->_result = $results->fetch_array(MYSQLI_NUM);
+          $this->_result = $results->fetch_array(MYSQLI_ASSOC);
         }
         $this->_count = $results->num_rows;
         $this->_lastInsertId = $this->_query->insert_id;
